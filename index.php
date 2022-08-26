@@ -1,4 +1,4 @@
 <?php
-echo 'updated';
+echo '555';
 ?>
-<iframe src="https://august-2022-bc-xss-challenge.herokuapp.com/" onload="this.contentWindow.postMessage('print()','*')">
+<iframe src="//august-2022-bc-xss-challenge.herokuapp.com/frame.php">
