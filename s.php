@@ -18,13 +18,18 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-if($result = $conn->query('SHOW TABLES')){
-  while($row = $conn->fetch_array($result)){
-    $tables[] = $row[0];
-  }
+$sql = "SELECT table_name
+           FROM information_schema.tables
+        WHERE table_schema = 'CSDATABASE'";
+
+$result = mysqli_query($conn,$sql);
+if(!$result){
+  die('MySQL error: ' . mysqli_error($conn));
 }
 
-print_r($tables);
+while ($row = mysqli_fetch_row($result)) {
+    echo "- {$row[0]}\n </br>";
+}
 
 mysqli_close($conn);
 ?>
