@@ -11,13 +11,13 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users WHERE id=1086";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "0" . $row["id"]. "<br>";
+    echo "0" . $row[2]. "<br>";
   }
 } else {
   echo "0 results";
