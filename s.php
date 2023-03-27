@@ -18,17 +18,17 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-$sql = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='CSDATABASE'";
+$sqlriz = "Select * FROM `CSDATABASE`";
 
-$result = mysqli_query($conn,$sql);
-if(!$result){
-  die('MySQL error: ' . mysqli_error($conn));
-}
 
-while ($row = mysqli_fetch_row($result)) {
-    echo "- {$row[0]}\n </br>";
-}
+    $Rslt = mysqli_query($conn,$sqlriz);
 
+    while($r=mysqli_fetch_object($Rslt))
+    {
+        $res[]=$r;
+    }
+
+print_r($res);
 
 mysqli_close($conn);
 ?>
