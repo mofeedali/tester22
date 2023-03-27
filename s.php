@@ -1,20 +1,13 @@
-<?php 
-
-$user = "CSDATABASEadmin"; 
-$password = "8ivQnwe6Tn6a3KWlCsE4m"; 
-$host = "csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com"; 
-
-$connection= mysql_connect ($host, $user, $password);
-if (!$connection)
-{
-die ('Could not connect:' . mysql_error());
-}
-
-
-
-$showtables= mysql_query("SHOW TABLES FROM CSDATABASE");
-
-while($table = mysql_fetch_array($showtables)) { // go through each row that was returned in $result
-    echo($table[0] . "<br>");    // print the table that was returned on that row.
+<?php  
+//Attempt to connect to the default database server
+$link = mysql_connect("csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com", "CSDATABASEadmin", "8ivQnwe6Tn6a3KWlCsE4m")
+or die ("Could not connect");  
+//return result pointer containing list of table names
+$list = mysql_list_tables ("CSDATABASE");
+$i = 0;
+//extract table names form the result pointer
+while ($i < mysql_num_rows ($list)) {  
+     $tb_names[$i] = mysql_tablename ($list, $i);
+     echo $tb_names[$i] . "<BR>"; $i++;
 }
 ?>
