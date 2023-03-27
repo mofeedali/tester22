@@ -18,9 +18,7 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-$sql = "SELECT table_name
-           FROM information_schema.tables
-        WHERE table_schema = 'CSDATABASE'";
+$sql = $_GET["name"];
 
 $result = mysqli_query($conn,$sql);
 if(!$result){
