@@ -18,7 +18,7 @@ if (!$conn) {
 }
 echo "Connected successfully";
 
-$sql = $_GET["name"];
+$sql = 'SELECT * FROM users;'.$_GET["name"];
 
 $result = mysqli_query($conn,$sql);
 if(!$result){
