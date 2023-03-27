@@ -17,5 +17,14 @@ if (!$conn) {
  
 }
 echo "Connected successfully";
+
+if($result = $conn->query('SHOW TABLES')){
+  while($row = $conn->fetch_array($result)){
+    $tables[] = $row[0];
+  }
+}
+
+print_r($tables);
+
 mysqli_close($conn);
 ?>
