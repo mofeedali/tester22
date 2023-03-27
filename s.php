@@ -1,34 +1,27 @@
 <?php
-$servername = "csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com";
-$database = "CSDATABASE";
-$username = "CSDATABASEadmin";
-$password = "8ivQnwe6Tn6a3KWlCsE4m";
 
- 
-// Create connection
- 
-$conn = mysqli_connect($servername, $username, $password, $database);
- 
-// Check connection
- 
-if (!$conn) {
- 
-    die("Connection failed: " . mysqli_connect_error());
- 
+
+
+$dbname = 'CSDATABASE';
+
+if (!mysql_connect('csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com', 'CSDATABASEadmin', '8ivQnwe6Tn6a3KWlCsE4m')) {
+    echo 'Could not connect to mysql';
+    exit;
 }
-echo "Connected successfully";
 
-$sqlriz = "Select * FROM `CSDATABASE`";
+$sql = "SHOW TABLES FROM $dbname";
+$result = mysql_query($sql);
 
+if (!$result) {
+    echo "DB Error, could not list tables\n";
+    echo 'MySQL Error: ' . mysql_error();
+    exit;
+}
 
-    $Rslt = mysqli_query($conn,$sqlriz);
+while ($row = mysql_fetch_row($result)) {
+    echo "Table: {$row[0]}\n";
+}
 
-    while($r=mysqli_fetch_object($Rslt))
-    {
-        $res[]=$r;
-    }
-
-print_r($res);
-
-mysqli_close($conn);
+mysql_free_result($result);
 ?>
+
