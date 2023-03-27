@@ -17,11 +17,13 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   // output data of each row
   while($row = $result->fetch_assoc()) {
-    echo "0" . $row[2]. "<br>";
+   // echo "0" . $row[2]. "<br>";
+     $json[] = $row;
   }
 } else {
   echo "0 results";
 }
+echo json_encode($json);
 $conn->close();
 
 ?> 
