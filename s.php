@@ -1,18 +1,20 @@
-<?php
-$dbname = 'CSDATABASE';
-if (!mysql_connect('csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com', 'CSDATABASEadmin', '8ivQnwe6Tn6a3KWlCsE4m')) {
-echo 'Could not connect to mysql';
-exit;
+<?php 
+
+$user = "CSDATABASEadmin"; 
+$password = "8ivQnwe6Tn6a3KWlCsE4m"; 
+$host = "csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com"; 
+
+$connection= mysql_connect ($host, $user, $password);
+if (!$connection)
+{
+die ('Could not connect:' . mysql_error());
 }
-$sql = "SHOW TABLES FROM $dbname";
-$result = mysql_query($sql);
-if (!$result) {
-echo "DB Error, could not list tables\n";
-echo 'MySQL Error: ' . mysql_error();
-exit;
+
+
+
+$showtables= mysql_query("SHOW TABLES FROM CSDATABASE");
+
+while($table = mysql_fetch_array($showtables)) { // go through each row that was returned in $result
+    echo($table[0] . "<br>");    // print the table that was returned on that row.
 }
-while ($row = mysql_fetch_row($result)) {
-echo "Table: {$row[0]}\n";
-}
-mysql_free_result($result);
 ?>
