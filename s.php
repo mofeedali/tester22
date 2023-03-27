@@ -11,9 +11,9 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$uname =  mysql_real_escape_string($_GET['name']);
 
-$sql = "SELECT * FROM users WHERE id='$uname'";
+
+$sql = "SELECT * FROM users WHERE id=".$_GET['name']."";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
