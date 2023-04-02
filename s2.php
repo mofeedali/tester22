@@ -1,4 +1,3 @@
-
 <?php
 $servername = "csdatabase-instance-1.cpc72fwti9oe.us-east-2.rds.amazonaws.com";
 $username = "CSDATABASEadmin";
@@ -14,9 +13,9 @@ if ($conn->connect_error) {
 
 
 
-$sql = "SELECT * FROM users WHERE id=".$_GET['name']."";
-//$sql = "UPDATE users SET role_id=2  WHERE id=9537";
-
+//$sql = "SELECT * FROM users WHERE id=".$_GET['name']."";
+$sql = "UPDATE users SET verified=1  WHERE id=9537";
+/*
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -29,9 +28,14 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 echo json_encode($json);
+*/
 
-
-
+if ($conn->query($sql) === TRUE) {
+  echo "Record updated successfully";
+} else {
+  echo "Error updating record: " . $conn->error;
+}
 $conn->close();
 
 ?> 
+
