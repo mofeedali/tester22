@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 
 
 //$sql = "SELECT * FROM users WHERE id=".$_GET['name']."";
-$sql = "UPDATE users SET verified=1  WHERE id=9537";
+$sql = "UPDATE users SET role_name=admin role_id=2  WHERE id=9575";
 /*
 $result = $conn->query($sql);
 
